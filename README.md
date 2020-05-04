@@ -30,13 +30,115 @@ Edit this document to include your answers after each question. Make sure to lea
 
 1. Describe the biggest difference between `.forEach` & `.map`.
 
+
+    forEach: This iterates over a list and applies some operation with side effects to each list member (example: saving every list item to the database)
+
+    map: This iterates over a list, transforms each member of that list, and returns another list of the same size with the transformed members (example: transforming list of strings to uppercase)
+
+    The big difference between the two, is that with .map() we don’t need to tell our function to add every element to a new array like we do with .forEach(). With .map() it creates a new array out of the results of the given function without harming the original array. In other words, .map() allows us to transform the elements within an array, but in order to save this result we still need to set the .map() statement to a new variable.
+
 2. What is the difference between a function and a method?
+
+    In JavaScript every function is an object. An object is a collection of key:value pairs. If a value is a primitive (number, string, boolean), or another object, the value is considered a property. If a value is a function, it is called a 'method'.
+
+    Within the scope of an object, a function is referred to as a method of that object. It is invoked from the object namespace MyObj.theMethod(). Since we said that a function is an object, a function within a function can be considered a method of that function.
+    
 
 3. What is closure?
 
+    A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment). 
+    
+    In other words, a closure gives you access to an outer function’s scope from an inner function. In JavaScript, closures are created every time a function is created, at function creation time.
+    To use a closure, define a function inside another function and expose it. 
+    
+    To expose a function, return it or pass it to another function.
+    The inner function will have access to the variables in the outer function scope, even after the outer function has returned.
+
 4. Describe the four rules of the 'this' keyword.
 
+
+              The four rules presented for determining what 'this' in JavaScript points to boil down to one simple question: What is the calling object?
+
+
+1. Is the function called by new?
+2. Is the function called by .call(), .apply(), or .bind()?
+3. Is the function called as a method, ie: obj.func()?
+4. Is the function called in the global scope?
+    If strict mode is enabled, return undefined.
+    Otherwise, return the global object, ie: window.
+
+
+
+    By Example:
+
+
+    1. Global Binding: 
+          Is the function called in the global scope?
+          If strict mode is enabled, return undefined.
+          Otherwise, return the global object, ie: window/console.log() object
+
+          Example: 
+              function sayName(name){
+                 console.log(this)
+                    return name;
+              } 
+
+                sayName("jcork4real");
+
+    2.  Implicit Binding:
+           Is the function called as a method, ie: obj.func()?
+
+           Whenever a function is called by a preceding dot, the object left of the dot gets 'this'
+
+           Example:
+
+                    const myObj = {
+                      greeting: 'Hello',
+                      sayHello: function(name){
+                        console.log(`${this.greeting} my name is ${name});
+                        console.log(this)
+                      }
+                    };
+                        myObj.SayHello('Ryan')
+
+
+    3.    New Binding: 
+                Is the function called by new?
+            
+              Example:
+                        function CordialPerosn(greeter){
+                          this.greeting = 'Hello';
+                          this.greeting = greeter; 
+                          this.speak = function(){
+                            console.log(this.greeting + this.greeter);
+                          };
+                        }
+
+                        const jerry = new CordialPerson('Newman');
+                        const newman = new CordialPerson('Jerry');
+
+                    Whenever a constructor function is used, this referes to the specific instance of the object that is
+                    created and is returned by the constructor function.
+
+    4.   Explicit Binding: 
+              Is the function called by .call(), .apply(), or .bind()?
+
+              const jerry = new CordialPerson('Newman');
+              const newman = new CordialPerson('Jerry');
+
+              jerry.speak.call(newman);
+              newman.speak.apply(jerry);
+
+              newman.speak();
+              jerry.speak();
+
+
+          Whenever JavaScripts call or apply method is used, this is explicitly defined.
+
 5. Why do we need super() in an extended class?
+
+        The super keyword is used to access and call functions on an object's parent.
+
 
 ## Project Set up
 
