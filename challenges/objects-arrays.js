@@ -143,7 +143,7 @@ console.log(displayNames);
 
 
 
- console.log(displayNames);
+
  
  /* Request 2: .map()
  
