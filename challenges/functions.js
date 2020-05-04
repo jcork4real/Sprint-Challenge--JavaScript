@@ -47,13 +47,15 @@ const external = "I'm outside the function";
 
 function myFunction() {
 console.log(external);
-const internal = "Hello! I'm inside myFunction!";
+const internal = "Hello! I'm inside myFunction!"; //<-------- Be able to access this varianble called internal?
 
-function nestedFunction() {
-  console.log(internal);
+function nestedFunction() { // <-----------How does this function nestedFunction()
+  console.log(internal);   
 };
 nestedFunction();
 }
 myFunction();
 
 
+//Answer: When nestedFunction() is declared, a new scope is created, a functional scope.
+//The variables or functions declared within that function have the ability to reach outwward for context, but never inward. 
