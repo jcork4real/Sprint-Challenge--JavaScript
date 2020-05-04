@@ -7,13 +7,28 @@
   * The consume function should return the invocation of cb, passing a and b into cb as arguments
 */
 
+function consume(a, b, cb){
+  return cb(a,b)
+}
+
 
 /* Step 2: Create several functions to callback with consume();
-  * Create a function named add that returns the sum of two numbers
-  * Create a function named multiply that returns the product of two numbers 
-  * Create a function named greeting that accepts a first and last name and returns "Hello first-name last-name, nice to meet you!"
+* Create a function named add that returns the sum of two numbers
+* Create a function named multiply that returns the product of two numbers 
+* Create a function named greeting that accepts a first and last name and returns "Hello first-name last-name, nice to meet you!"
 */
 
+  function add(a,b){
+    return a + b
+  }
+
+  function multiply(a,b){
+    return a * b
+  }
+
+  function greeting(a,b){
+      return `Hello ${a} ${b}, nice to meet you!`
+  }
 
 /* Step 3: Check your work by un-commenting the following calls to consume(): */
 // console.log(consume(2, 2, add)); // 4
@@ -31,12 +46,16 @@
 const external = "I'm outside the function";
 
 function myFunction() {
-  console.log(external);
-  const internal = "Hello! I'm inside myFunction!";
+console.log(external);
+const internal = "Hello! I'm inside myFunction!"; //<-------- Be able to access this varianble called internal?
 
-  function nestedFunction() {
-    console.log(internal);
-  };
-  nestedFunction();
+function nestedFunction() { // <-----------How does this function nestedFunction()
+  console.log(internal);   
+};
+nestedFunction();
 }
 myFunction();
+
+
+//Answer: When nestedFunction() is declared, a new scope is created, a functional scope.
+//The variables or functions declared within that function have the ability to reach outwward for context, but never inward. 
